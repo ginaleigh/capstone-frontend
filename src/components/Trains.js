@@ -15,7 +15,7 @@ export default class TrainList extends React.Component {
 
   render() {
     return (
-      <p>
+      <div>
         {this.state.trains.map((train) => (
           <div key={train.id}>
             {train.name}
@@ -26,7 +26,7 @@ export default class TrainList extends React.Component {
             {train.towards_loop}
           </div>
         ))}
-      </p>
+      </div>
     );
   }
 }
