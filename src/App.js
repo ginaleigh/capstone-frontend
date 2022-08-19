@@ -1,11 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Trains from "./components/Trains";
+import Stops from "./components/Stops";
 
 function App() {
   return (
     <div className="App">
-      <Trains />
+      <Stops />
     </div>
   );
 }
