@@ -25,7 +25,7 @@ export default class StopList extends React.Component {
             <br></br>
             {stop.is_accessible}
             {stop.towards_loop}
-            <Arrivals parentId={stop.parent_id}/>
+            <Arrivals parentId={stop.parent_id} />
           </div>
         ))}
       </div>
