@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default class ArrivalList extends React.Component {
   constructor(props) {
-    super()
+    super();
     this.props = props;
   }
   state = {
@@ -11,7 +11,7 @@ export default class ArrivalList extends React.Component {
   };
 
   componentDidMount() {
-    console.log("hi", this.props)
+    console.log("hi", this.props);
     axios.get(`http://localhost:3000/arrival_times?parent_id=${this.props.parentId}`).then((res) => {
       const arrival_time = res.data["ctatt"]["eta"];
       this.setState({ arrival_time });
@@ -22,12 +22,14 @@ export default class ArrivalList extends React.Component {
   render() {
     return (
       <div>
-        {this.state.arrival_time.map((arrivals) => (
-          <div key={arrivals.rn}>
-            <b>{arrivals.arrT}</b>
-            <b>{arrivals.destNm}</b>
-            <b>{arrivals.rt}</b>
-            <b>{arrivals.staNm}</b>
+        {this.state.arrival_time.map((arrivals, index) => (
+          <div key={index}>
+            <p>
+              {arrivals.arrT}
+              {arrivals.destNm}
+              {arrivals.rt}
+              {arrivals.staNm}
+            </p>
           </div>
         ))}
       </div>

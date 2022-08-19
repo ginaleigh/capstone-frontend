@@ -17,8 +17,8 @@ export default class StopList extends React.Component {
   render() {
     return (
       <div>
-        {this.state.stops.map((stop) => (
-          <div key={stop.name}>
+        {this.state.stops.map((stop, index) => (
+          <div key={index}>
             <b>{stop.name}</b>
             <br></br>
             {stop.parent_id}
