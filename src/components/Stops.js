@@ -4,23 +4,25 @@ import Arrivals from "./Arrivals";
 
 export default class StopList extends React.Component {
   state = {
-    stops: [],
+    stop_data: [],
   };
 
   componentDidMount() {
     axios.get(`http://localhost:3000/stops`).then((res) => {
-      const stops = res.data;
-      this.setState({ stops });
+      const stop_data = res.data;
+      this.setState({ stop_data });
     });
   }
 
   render() {
     return (
       <div>
-        {this.state.stops.map((stop) => (
+        {this.state.stop_data.map((stop, index) => (
           <div key={stop.name}>
             <b>{stop.name}</b>
+            <p>{index}</p>
             <br></br>
+            <p>Stops.js</p>
             {stop.parent_id}
             <br></br>
             {stop.is_accessible}
