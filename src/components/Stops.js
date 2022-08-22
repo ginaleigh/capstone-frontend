@@ -1,11 +1,9 @@
 import React from "react";
 import axios from "axios";
-
-// import Arrivals from "./Arrivals";
+import Arrivals from "./Arrivals";
 
 export default class StopList extends React.Component {
   state = {
-    line: [],
     stops: [],
   };
 
@@ -16,18 +14,37 @@ export default class StopList extends React.Component {
     });
   }
 
-    render() {
-      return (
-        <div>
-          <select>
-            {this.state.stops.map((stop, index) => (
-              <option value={stop.parent_id}>{stop.name}</option>
-            ))}
-          </select>
-        </div>
-      );
-    }
+  render() {
+    return (
+      <div>
+        {this.state.stops.map((stop, index) => (
+          <div key={index}>
+            <b>{stop.name}</b>
+            <br></br>
+            {stop.parent_id}
+            <br></br>
+            {stop.is_accessible}
+            {stop.towards_loop}
+            <Arrivals parentId={stop.parent_id} />
+          </div>
+        ))}
+      </div>
+    );
   }
+}
+
+  //   render() {
+  //     return (
+  //       <div>
+  //         <select>
+  //           {this.state.stops.map((stop, index) => (
+  //             <option value={stop.parent_id}>{stop.name}</option>
+  //           ))}
+  //         </select>
+  //       </div>
+  //     );
+  //   }
+  // }
 
 //   render() {
 //     return (

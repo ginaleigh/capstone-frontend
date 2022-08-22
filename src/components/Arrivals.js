@@ -2,7 +2,13 @@ import React from "react";
 import axios from "axios";
 
 export default class ArrivalList extends React.Component {
-  constructor() {}
+  constructor(props) {
+    super();
+    this.props = props;
+  }
+  state = {
+    arrival_time: [],
+  };
 
   componentDidMount() {
     axios.get(`http://localhost:3000/arrival_times?parent_id=${this.props.parentId}`).then((res) => {
