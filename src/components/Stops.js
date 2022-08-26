@@ -25,36 +25,36 @@ export default class StopList extends React.Component {
 
   handleChange(event) {
     console.log(event.target.value);
-    console.log(event.target.name);
+    // console.log(event.target.name);
   }
 
-  // handleStopChange(event) {
-  //   console.log(event.target.value);
-  // }
+  handleStopChange(event) {
+    console.log(event.target.value);
+  }
 
   render() {
     return (
       <div>
         <Dropdown
-          label="CTA Train Line"
+          informationBeforeDropdown="CTA Train Line"
           onChange={this.handleChange}
-          options={this.state.lines.map((line) => line)}
-          // value={this.state.lines.map((lineId) => lineId.id)}
+          trainData={this.state.lines}
         />
-        <Dropdown label="Train Stop" onChange={this.handleChange} options={this.state.stops.map((stop) => stop.id)} />
+        <Dropdown informationBeforeDropdown="Train Stop" onChange={this.handleStopChange} trainData={this.state.stops} />
       </div>
+  
     );
   }
 }
 
-const Dropdown = ({ label, options, onChange }) => {
+const Dropdown = ({ informationBeforeDropdown, trainData, onChange }) => {
   return (
     <label>
-      {label}
+      {informationBeforeDropdown}
       <select onChange={onChange}>
-        {options.map((option) => (
-          <option key={Math.random()} value={option.id}>
-            {option.color}
+        {trainData.map((train) => (
+          <option key={Math.random()} value={train.id}>
+            {train.name}
           </option>
         ))}
       </select>
