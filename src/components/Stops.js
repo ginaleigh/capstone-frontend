@@ -6,6 +6,7 @@ export default class StopList extends React.Component {
   state = {
     lines: [],
     stops: [],
+    arrivals: [],
   };
 
   componentDidMount() {
@@ -26,7 +27,7 @@ export default class StopList extends React.Component {
   }
 
   handleStopChange(event) {
-    console.log(ArrivalList);
+    console.log(event.target.value);
   }
 
   render() {
@@ -37,9 +38,18 @@ export default class StopList extends React.Component {
           onChange={this.handleChange}
           trainData={this.state.lines}
         />
-        <Dropdown informationBeforeDropdown="Train Stop" onChange={this.handleStopChange} trainData={this.state.stops} />
+        <Dropdown
+          informationBeforeDropdown="Train Stop"
+          onChange={this.handleStopChange}
+          trainData={this.state.stops}
+        />
+      <p>
+      Display Arrival Time "Button - Display Reach"
+      </p>
+      <p>
+      Display ADA Yes/No
+      </p>
       </div>
-  
     );
   }
 }
