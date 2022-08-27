@@ -1,8 +1,6 @@
 import React from "react";
 import axios from "axios";
-// import dropdown from "Dropdown"
-
-// import Arrivals from "./Arrivals";
+import ArrivalList from "./Arrivals";
 
 export default class StopList extends React.Component {
   state = {
@@ -25,11 +23,10 @@ export default class StopList extends React.Component {
 
   handleChange(event) {
     console.log(event.target.value);
-    // console.log(event.target.name);
   }
 
   handleStopChange(event) {
-    console.log(event.target.value);
+    console.log(ArrivalList);
   }
 
   render() {
