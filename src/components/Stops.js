@@ -1,58 +1,10 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import ArrivalList from "./Arrivals";
 
-export default class StopList extends React.Component {
-  state = {
-    lines: [],
-    stops: [],
-    arrivals: [],
-  };
 
-  componentDidMount() {
-    axios.get(`http://localhost:3000/stops`).then((res) => {
-      const stops = res.data;
-      this.setState({ stops });
-      console.log(stops);
-      axios.get(`http://localhost:3000/lines`).then((res) => {
-        const lines = res.data;
-        this.setState({ lines });
-        console.log(lines);
-      });
-    });
-  }
-
-  handleChange(event) {
-    console.log(event.target.value);
-  }
-
-  handleStopChange(event) {
-    console.log(event.target.value);
-  }
-
-  render() {
-    return (
-      <div>
-        <Dropdown
-          informationBeforeDropdown="CTA Train Line"
-          onChange={this.handleChange}
-          trainData={this.state.lines}
-        />
-        <Dropdown
-          informationBeforeDropdown="Train Stop"
-          onChange={this.handleStopChange}
-          trainData={this.state.stops}
-        />
-      <p>
-      Display Arrival Time "Button - Display Reach"
-      </p>
-      <p>
-      Display ADA Yes/No
-      </p>
-      </div>
-    );
-  }
-}
+// class components
+// functional components -- hooks
 
 const Dropdown = ({ informationBeforeDropdown, trainData, onChange }) => {
   return (
@@ -68,3 +20,53 @@ const Dropdown = ({ informationBeforeDropdown, trainData, onChange }) => {
     </label>
   );
 };
+
+const StopList = () => {
+  const [stops, setStops] = useState([]);
+  const [lines, setLines] = useState([]);
+  const [selectedStopId, setSelectedStopId] = useState();
+  const [arrivals, setArrivals] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/stops`).then((res) => {
+      const stops = res.data;
+      setStops(stops)
+      console.log(stops);
+      axios.get(`http://localhost:3000/lines`).then((res) => {
+        const lines = res.data;
+        setLines(lines)
+        console.log(lines);
+      });
+    });
+  }, [])
+
+  const handleChange = (event) => {
+    console.log(event.target.value);
+  }
+
+  const handleStopChange = (event) => {
+    console.log(event.target.value);
+    setSelectedStopId(event.target.value)
+  }
+
+  return (
+      <div>
+        <Dropdown
+          informationBeforeDropdown="CTA Train Line"
+          onChange={handleChange}
+          trainData={lines}
+        />
+        <Dropdown
+          informationBeforeDropdown="Train Stop"
+          onChange={handleStopChange}
+          trainData={stops}
+        />
+        <p>Select train line and stop</p>
+
+        { /* sent down the id as prop into arrival */}
+        {selectedStopId !== undefined && <ArrivalList parentId={selectedStopId} />}
+      </div>
+  );
+}
+
+export default StopList;

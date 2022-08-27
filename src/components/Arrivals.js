@@ -1,26 +1,22 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default class ArrivalList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  state = {
-    arrival_time: [],
-  };
+// object destructuring
+const ArrivalList = ({ parentId }) => {
+  const [arrivalTimes, setArrivalTimes] = useState([]);
 
-  componentDidMount() {
-    axios.get(`http://localhost:3000/arrival_times?parent_id=${this.props.parentId}`).then((res) => {
-      const arrival_time = res.data["ctatt"]["eta"];
-      this.setState({ arrival_time });
-      console.log(arrival_time);
+  // dependency array
+  useEffect(() => {
+    axios.get(`http://localhost:3000/arrival_times?parent_id=${parentId}`).then((res) => {
+      const payload = res.data["ctatt"]["eta"];
+      setArrivalTimes(payload)
+      console.log(payload, '<<<<<<<<<<<');
     });
-  }
+  }, [parentId])
 
-  render() {
     return (
       <div>
-        {this.state.arrival_time.map((arrivals, index) => (
+        {arrivalTimes.map((arrivals, index) => (
           <div key={index}>
             <p>
               {arrivals.arrT}
@@ -32,5 +28,7 @@ export default class ArrivalList extends React.Component {
         ))}
       </div>
     );
-  }
+
 }
+
+export default ArrivalList
