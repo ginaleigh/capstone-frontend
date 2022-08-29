@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Arrival from "./Arrival";
 
 // object destructuring
 const ArrivalList = ({ parentId }) => {
@@ -16,15 +17,8 @@ const ArrivalList = ({ parentId }) => {
 
     return (
       <div>
-        {arrivalTimes.map((arrivals, index) => (
-          <div key={index}>
-            <p>
-              {arrivals.arrT}
-              {arrivals.destNm}
-              {arrivals.rt}
-              {arrivals.staNm}
-            </p>
-          </div>
+        {arrivalTimes.map((arrival, index) => (
+          <Arrival arrival={arrival} key={ index } />          
         ))}
       </div>
     );
