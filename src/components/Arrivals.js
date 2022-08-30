@@ -11,7 +11,7 @@ const ArrivalList = ({ parentId }) => {
     axios.get(`http://localhost:3000/arrival_times?parent_id=${parentId}`).then((res) => {
       const payload = res.data["ctatt"]["eta"];
       setArrivalTimes(payload)
-      console.log(payload, '<<<<<<<<<<<');
+      console.log(payload);
     });
   }, [parentId])
 

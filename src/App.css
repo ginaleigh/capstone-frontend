@@ -1,6 +1,17 @@
 #root {
+  text-align: left;
+  width: 100%;
   margin: 0 auto;
-  width: 800px;
+  overflow: scroll;
+  background-color: #494440;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: cal(10px + 2vmin);
+  color: #ffffff;
+  font: impact;
 }
 
 .App-logo {

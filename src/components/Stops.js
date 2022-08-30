@@ -8,10 +8,6 @@ import "./Stops.css";
 // class components
 // functional components -- hooks
 
-const RedDiv = styled.div`
-  background-color: red;
-`
-
 const Dropdown = ({ informationBeforeDropdown, trainData, onChange }) => {
   return (
     <label>
