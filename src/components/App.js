@@ -9,7 +9,7 @@ function App() {
       <img src="/reachAbleLogo.png" />
       <Nav />
       <Stops />
-      <img src="/looptrain.jpg" />
+      <img src="/loopResize.jpg" />
     </div>
   );
 }
