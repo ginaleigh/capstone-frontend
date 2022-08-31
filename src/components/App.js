@@ -10,6 +10,9 @@ function App() {
       <Nav />
       <Stops />
       <img src="/loopResize.jpg" />
+      <br></br>
+      <br></br>
+      <p>Reachable, transit for all brought to you by Gina Mirando</p>
     </div>
   );
 }
