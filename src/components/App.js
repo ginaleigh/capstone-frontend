@@ -6,10 +6,10 @@ import Nav from "./Nav.js";
 function App() {
   return (
     <div className="app">
-      <img src="/blueline.png" />
+      <img src="/reachAbleLogo.png" />
       <Nav />
       <Stops />
-      
+      <img src="/looptrain.jpg" />
     </div>
   );
 }

@@ -57,7 +57,7 @@ const StopList = () => {
   };
 
   return (
-    <div className="test">
+    <div className="drop">
       <Dropdown informationBeforeDropdown="CTA Train Line" onChange={handleChange} trainData={lines} />
       <Dropdown informationBeforeDropdown="Train Stop" onChange={handleStopChange} trainData={stops} />
       <p></p>
