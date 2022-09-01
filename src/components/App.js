@@ -1,5 +1,4 @@
 import "./app.css";
-import "./arrivals.css";
 import Stops from "./Stops";
 import Nav from "./Nav.js";
 

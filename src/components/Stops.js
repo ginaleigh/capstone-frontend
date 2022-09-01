@@ -7,11 +7,12 @@ import "./stops.css";
 // class components
 // functional components -- hooks
 
-const Dropdown = ({ informationBeforeDropdown, trainData, onChange }) => {
+// Fully controlled components - supply both the value and the change function
+const Dropdown = ({ informationBeforeDropdown, trainData, onChange, value }) => {
   return (
     <label>
       {informationBeforeDropdown}
-      <select onChange={onChange}>
+      <select onChange={onChange} value={value}>
         {trainData.map((train) => (
           <option key={Math.random()} value={train.id}>
             {train.name}
@@ -25,8 +26,10 @@ const Dropdown = ({ informationBeforeDropdown, trainData, onChange }) => {
 const StopList = () => {
   const [stops, setStops] = useState([]);
   const [lines, setLines] = useState([]);
-  const [isAccessible, setIsAccessible] = useState();
-  const [selectedStopId, setSelectedStopId] = useState();
+  const [stop, setStop] = useState(null);
+  const [line, setLine] = useState(null);
+  //const [isAccessible, setIsAccessible] = useState(false);
+  //const [selectedStopId, setSelectedStopId] = useState();
 
   useEffect(() => {
     axios.get(`http://localhost:3000/stops`).then((res) => {
@@ -42,32 +45,38 @@ const StopList = () => {
   }, []);
 
   const handleChange = (event) => {
-    console.log(event.target.value);
+    const lineId = parseInt(event.target.value);
+    const newLine = lines.find(item => item.id === lineId);
+    setLine(newLine)
   };
 
   const handleStopChange = (event) => {
-    console.log(event.target.value);
-    setSelectedStopId(event.target.value);
+    //console.log(event.target.value);
+    const stopId = parseInt(event.target.value);
+    //setSelectedStopId(event.target.value);
     for (let i = 0; i < stops.length; i++) {
-      if (stops[i].id === parseInt(event.target.value)) {
-        setIsAccessible(stops[i].is_accessible);
-        console.log(stops[i].is_accessible);
+      if (stops[i].id === stopId) {
+        setStop(stops[i])
+        //setIsAccessible(stops[i].is_accessible);
+        //console.log(stops[i].is_accessible);
       }
     }
   };
 
   return (
     <div className="drop">
-      <Dropdown informationBeforeDropdown="CTA Train Line" onChange={handleChange} trainData={lines} />
-      <Dropdown informationBeforeDropdown="Train Stop" onChange={handleStopChange} trainData={stops} />
+      <Dropdown informationBeforeDropdown="CTA Train Line" onChange={handleChange} trainData={lines} value={line ? line.id : ''} />
+      <Dropdown informationBeforeDropdown="Train Stop" onChange={handleStopChange} trainData={stops} value={stop ? stop.id : ''} />
       <p></p>
       <b>Select train line and stop</b>
-      <p>{isAccessible}</p>
+      
 
       {/* sent down the id as prop into arrival */}
-      {selectedStopId !== undefined && <ArrivalList parentId={selectedStopId} />}
+      {stop && <ArrivalList stop={stop} />}
     </div>
   );
 };
+
+//export { AnothComp, AnotherComp1 }
 
 export default StopList;
