@@ -8,12 +8,12 @@ const ArrivalList = ({ stop }) => {
 
   // dependency array
   useEffect(() => {
-    axios.get(`http://localhost:3000/arrival_times?parent_id=${stop.id}`).then((res) => {
+    axios.get(`http://localhost:3000/arrival_times?parent_id=${stop.parent_id}`).then((res) => {
       const payload = res.data["ctatt"]["eta"];
       setArrivalTimes(payload)
       console.log(payload);
     });
-  }, [stop.id])
+  }, [stop.parent_id])
 
     return (
       <div>
